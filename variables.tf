@@ -3,16 +3,10 @@ variable "globalaccount" {
   type        = string
 }
 
-variable "subaccount_name" {
-  description = "Name of the subaccount"
+variable "project_name" {
+  description = "Name of the project"
   type        = string
-  default     = "DEV Project ABC"
-}
-
-variable "subaccount_subdomain" {
-  description = "Subdomain of the subaccount"
-  type        = string
-  default     = "dev-project-marc-beuter"
+  default     = "Project ABC"
 }
 
 variable "subaccount_region" {
@@ -25,11 +19,7 @@ variable "subaccount_region" {
   }
 }
 
-variable "subaccount_beta_enabled" {
-  description = "Beta feaatures enabled on subaccount"
-  type        = bool
-  default     = true
-}
+
 
 variable "subaccount_stage" {
   description = "Stage of the subaccount"
