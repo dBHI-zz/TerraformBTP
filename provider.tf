@@ -8,5 +8,5 @@ terraform {
 }
 
 provider "btp" {
-  globalaccount = "6146039atrial-ga"
+  globalaccount = var.globalaccount
 }

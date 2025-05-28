@@ -1,10 +1,10 @@
 resource "btp_subaccount" "project_subaccount" {
-  name         = "DEV Project ABC"
-  subdomain    = "dev-project-marc-beuter"
-  region       = "us10"
-  beta_enabled = true
+  name         = var.subaccount_name
+  subdomain    = var.subaccount_subdomain
+  region       = var.subaccount_region
+  beta_enabled = var.subaccount_beta_enabled
   labels = {
-    "stage"      = ["DEV"]
-    "costcenter" = ["12345"]
+    "stage"      = [var.subaccount_stage]
+    "costcenter" = [var.project_costcenter]
   }
 }
