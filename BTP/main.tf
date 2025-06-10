@@ -21,45 +21,12 @@ resource "btp_subaccount" "project_subaccount" {
   }
 }
 
-resource "btp_subaccount_entitlement" "alert_notification_service_standard" {
-  subaccount_id = btp_subaccount.project_subaccount.id
-  service_name  = "alert-notification"
-  plan_name     = "standard"
-}
+module "standard_services" {
+  source           = "./modules/srvc-baseline"
+  subaccount_stage = var.subaccount_stage
+  project_name     = var.project_name
+  subaccount_id    = btp_subaccount.project_subaccount.id
 
-resource "btp_subaccount_entitlement" "feature_flags_service_lite" {
-  subaccount_id = btp_subaccount.project_subaccount.id
-  service_name  = "feature-flags"
-  plan_name     = "lite"
-
-}
-
-resource "btp_subaccount_entitlement" "feature_flags_dashboard_app" {
-  subaccount_id = btp_subaccount.project_subaccount.id
-  service_name  = "feature-flags-dashboard"
-  plan_name     = "dashboard"
-
-}
-
-data "btp_subaccount_service_plan" "alert_notification_service_standard" {
-  subaccount_id = btp_subaccount.project_subaccount.id
-  name          = "standard"
-  offering_name = "alert-notification"
-  depends_on    = [btp_subaccount_entitlement.alert_notification_service_standard]
-}
-
-resource "btp_subaccount_service_instance" "alert_notification_service_standard" {
-  subaccount_id  = btp_subaccount.project_subaccount.id
-  serviceplan_id = data.btp_subaccount_service_plan.alert_notification_service_standard.id
-  name           = "${local.service_name_prefix}-alert-notification"
-
-}
-
-resource "btp_subaccount_subscription" "feature_flags_dashboard_app" {
-  subaccount_id = btp_subaccount.project_subaccount.id
-  app_name      = "feature-flags-dashboard"
-  plan_name     = "dashboard"
-  depends_on    = [btp_subaccount_entitlement.feature_flags_dashboard_app]
 }
 
 data "btp_subaccount_environments" "all_environments" {
