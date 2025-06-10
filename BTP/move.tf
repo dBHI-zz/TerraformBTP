@@ -1,24 +1,19 @@
 moved {
-    from = btp_subaccount_entitlement.alert_notification_service_standard
-    to   = module.standard_services.btp_subaccount_entitlement.alert_notification_service_standard
+  from = btp_subaccount.project_subaccount
+  to   = module.subaccount_base.btp_subaccount.project_subaccount
 }
 
 moved {
-    from = btp_subaccount_entitlement.feature_flags_dashboard_app
-    to   = module.standard_services.btp_subaccount_entitlement.feature_flags_dashboard_app
+  from = btp_subaccount_environment_instance.cloudfoundry
+  to   = module.subaccount_base.btp_subaccount_environment_instance.cloudfoundry
 }
 
 moved {
-    from = btp_subaccount_entitlement.feature_flags_service_lite
-    to   = module.standard_services.btp_subaccount_entitlement.feature_flags_service_lite
+  from = random_uuid.uuid
+  to   = module.subaccount_base.random_uuid.uuid
 }
 
 moved {
-    from = btp_subaccount_service_instance.alert_notification_service_standard
-    to   = module.standard_services.btp_subaccount_service_instance.alert_notification_service_standard
-}
-
-moved {
-    from = btp_subaccount_subscription.feature_flags_dashboard_app
-    to   = module.standard_services.btp_subaccount_subscription.feature_flags_dashboard_app
+  from = terraform_data.cf_landscape_label
+  to   = module.subaccount_base.terraform_data.cf_landscape_label
 }
