@@ -12,3 +12,8 @@ output "cf_org_id" {
   value       = jsondecode(btp_subaccount_environment_instance.cloudfoundry.labels)["Org ID"]
   description = "The Cloud Foundry Org ID."
 }
+
+output "subaccount_url" {
+  value       = "https://account.hanatrial.ondemand.com/trial/#/globalaccount/${data.btp_globalaccount.this.id}/subaccount/${btp_subaccount.project_subaccount.id}"
+  description = "The SAP BTP subaccount URL"
+}
